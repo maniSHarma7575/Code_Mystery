@@ -1,0 +1,33 @@
+import java.util.*;
+import java.io.*;
+
+public class Alchemy {
+
+	static Scanner sc = new Scanner(System.in);
+	static BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+	
+	public static void main(String[] args) throws IOException{
+		int t = sc.nextInt();
+		for(int i = 1;i <= t;i++) {
+			bw.write("Case #" + String.valueOf(i) + ": ");
+			solve();
+		}
+		bw.flush();
+		bw.close();
+	}
+	
+	public static void solve() throws IOException {
+		int n = sc.nextInt();
+		char[] arr = sc.next().toCharArray();
+		int count = 0;
+		for(int i = 0;i < n;i++) {
+			if(arr[i] == 'A')count++;
+			else count--;
+		}
+		
+		if(Math.abs(count) == 1) {
+			bw.write("Y\n");
+		}
+		else bw.write("N\n");
+	}
+}
