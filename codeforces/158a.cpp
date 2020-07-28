@@ -12,14 +12,19 @@ int main()
   for (int i = 0; i < n; i++)
   {
     cin >> arr[i];
-    if (i >= k && arr[i] == arr[k - 1])
+    if (i < k && arr[i] == 0)
+    {
+      count--;
+    }
+    if (i >= k && arr[k - 1] != 0 && arr[i] == arr[k - 1])
     {
       count++;
     }
   }
-  if (arr[k - 1] == 0)
-    cout << "0";
+  if (count < 0)
+    cout << 0;
   else
     cout << count;
+
   return 0;
 }
