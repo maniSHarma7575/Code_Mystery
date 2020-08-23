@@ -64,6 +64,21 @@ void insert(struct Node* node,int key){
 
     }
 }
+struct Node* findLCA(struct Node* root,int n1,int n2){
+    if(root==NULL)return;
+
+    if(root->data==n1 || root->data==n2){
+        return root;
+    }
+
+    struct Node* left_lca=findLCA(root->left,n1,n2);
+    struct Node* right_lca=findLCA(root->right,n1,n2);
+
+    if(left_lca && right_lca){
+        return root;
+    }
+    return (left_lca!=NULL)?left_lca:right_lca;
+}
 int main() {
 	// your code goes here
 	struct Node* root=new Node(1);
@@ -88,6 +103,11 @@ int main() {
 
     cout<<"\nLevelorder traversal of binary tree is \n";
     printLevelOrder(root);
+
+     cout << "LCA(4, 5) = " << findLCA(root, 4, 5)->key;
+    cout << "nLCA(4, 6) = " << findLCA(root, 4, 6)->key;
+    cout << "nLCA(3, 4) = " << findLCA(root, 3, 4)->key;
+    cout << "nLCA(2, 4) = " << findLCA(root, 2, 4)->key;
 
 	return 0;
 }
