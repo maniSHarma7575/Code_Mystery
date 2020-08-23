@@ -42,6 +42,28 @@ void printLevelOrder(struct Node * node){
 
     }
 }
+void insert(struct Node* node,int key){
+    queue<struct Node*> q;
+    q.push(node);
+    while(!q.empty()){
+        struct Node* temp=q.front();
+        q.pop();
+        if(!temp->left){
+            temp->left=new Node(key);
+            break;
+        }else{
+            q.push(temp->left);
+        }
+        if(!temp->right){
+            temp->right=new Node(key);
+            break;
+        }else{
+            q.push(temp->right);
+        }
+
+
+    }
+}
 int main() {
 	// your code goes here
 	struct Node* root=new Node(1);
@@ -60,5 +82,12 @@ int main() {
 
     cout<<"\nLevelorder traversal of binary tree is \n";
     printLevelOrder(root);
+
+    cout<<"\nInserting a new node in a tree \n";
+    insert(root,6);
+
+    cout<<"\nLevelorder traversal of binary tree is \n";
+    printLevelOrder(root);
+
 	return 0;
 }
