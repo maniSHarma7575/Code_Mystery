@@ -65,7 +65,7 @@ void insert(struct Node* node,int key){
     }
 }
 struct Node* findLCA(struct Node* root,int n1,int n2){
-    if(root==NULL)return;
+    if(root==NULL)return NULL;
 
     if(root->data==n1 || root->data==n2){
         return root;
@@ -79,6 +79,115 @@ struct Node* findLCA(struct Node* root,int n1,int n2){
     }
     return (left_lca!=NULL)?left_lca:right_lca;
 }
+void leftViewUtil(Node* root) 
+{ 
+      // Declare a queue for Level order Traversal
+      queue<Node*> q;
+  
+    if (root == NULL) 
+        return; 
+
+    // Push root 
+    q.push(root); 
+
+    // Delimiter 
+    q.push(NULL); 
+
+    while (!q.empty()) { 
+        Node* temp = q.front(); 
+
+        if (temp) { 
+
+            // Prints first node 
+            // of each level 
+            cout<<temp->data<<" ";
+
+            // Push children of all nodes at 
+            // current level 
+            while (q.front() != NULL) { 
+
+                // If left child is present 
+                // push into queue 
+                if (temp->left) 
+                    q.push(temp->left); 
+
+                // If right child is present 
+                // push into queue 
+                if (temp->right) 
+                    q.push(temp->right); 
+
+                // Pop the current node 
+                q.pop(); 
+
+                temp = q.front(); 
+            } 
+
+            // Push delimiter 
+            // for the next level 
+            q.push(NULL); 
+        } 
+
+        // Pop the delimiter of 
+        // the previous level 
+        q.pop(); 
+    } 
+} 
+void rightViewUtil(Node* root) 
+{ 
+      // Declare a queue for Level order Traversal
+      queue<Node*> q;
+  
+    if (root == NULL) 
+        return; 
+
+    // Push root 
+    q.push(root); 
+
+    // Delimiter 
+    q.push(NULL); 
+
+    while (!q.empty()) { 
+        Node* temp = q.front(); 
+        if (temp) { 
+
+            // Prints first node 
+            // of each level 
+
+            // Push children of all nodes at 
+            // current level 
+            while (q.front() != NULL) { 
+
+                // If left child is present 
+                // push into queue 
+                if (temp->left) 
+                    q.push(temp->left); 
+
+                // If right child is present 
+                // push into queue 
+                if (temp->right) 
+                    q.push(temp->right); 
+
+                // Pop the current node 
+                q.pop(); 
+                if(q.front()==NULL){
+                	cout<<temp->data<<" ";
+                }
+                temp = q.front(); 
+               
+            } 
+            
+			 q.push(NULL); 
+
+            // Push delimiter 
+            // for the next level 
+           
+        } 
+
+        // Pop the delimiter of 
+        // the previous level 
+        q.pop(); 
+    } 
+} 
 int main() {
 	// your code goes here
 	struct Node* root=new Node(1);
@@ -100,14 +209,18 @@ int main() {
 
     cout<<"\nInserting a new node in a tree \n";
     insert(root,6);
+    insert(root,7);
 
     cout<<"\nLevelorder traversal of binary tree is \n";
     printLevelOrder(root);
 
-     cout << "LCA(4, 5) = " << findLCA(root, 4, 5)->key;
-    cout << "nLCA(4, 6) = " << findLCA(root, 4, 6)->key;
-    cout << "nLCA(3, 4) = " << findLCA(root, 3, 4)->key;
-    cout << "nLCA(2, 4) = " << findLCA(root, 2, 4)->key;
-
+     cout << "LCA(4, 5) = " << findLCA(root, 4, 5)->data;
+    cout << "nLCA(4, 6) = " << findLCA(root, 4, 6)->data;
+    cout << "nLCA(3, 4) = " << findLCA(root, 3, 4)->data;
+    cout << "nLCA(2, 4) = " << findLCA(root, 2, 4)->data;
+    cout<<endl;
+	leftViewUtil(root);
+	cout<<endl;
+	rightViewUtil(root);
 	return 0;
 }
