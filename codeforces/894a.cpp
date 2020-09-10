@@ -7,6 +7,7 @@ int main() {
 	int n=str.length();
 	int dp[n];
 	if(str[0]=='Q')dp[0]=1;
+	else dp[0]=0;
 	for(int i=1;i<n;i++){
 		if(str[i]=='Q'){
 			dp[i]=dp[i-1]+1;
