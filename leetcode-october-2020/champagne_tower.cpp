@@ -14,5 +14,5 @@ public:
             }
         }
         return min(1.0, flow[query_row][query_glass]);
-    }
+    }3
 };
