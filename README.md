@@ -1,2 +1,2 @@
-# Prepration-Geeks-for-Geeks-Course
-Learning Competitive problems and mathematics.
+# Data Structure and Algorithms
+It contains solved problems exercises based on data structure, algorithms and mathematics.
